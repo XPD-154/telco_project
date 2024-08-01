@@ -259,7 +259,7 @@
           <tr>
             <td class="button">
               <div>
-                <a class="button-mobile" href="#" style="background-color:#cd3c32;border-radius:5px;color:#ffffff;display:inline-block;font-family:'Cabin', Helvetica, Arial, sans-serif;font-size:14px;font-weight:regular;line-height:45px;text-align:center;text-decoration:none;width:155px;-webkit-text-size-adjust:none;mso-hide:all;">Visit Us</a>
+                <a class="button-mobile" href="https://univasa.com/us/" style="background-color:#cd3c32;border-radius:5px;color:#ffffff;display:inline-block;font-family:'Cabin', Helvetica, Arial, sans-serif;font-size:14px;font-weight:regular;line-height:45px;text-align:center;text-decoration:none;width:155px;-webkit-text-size-adjust:none;mso-hide:all;">Visit Us</a>
               </div>
             </td>
           </tr>
@@ -355,7 +355,7 @@
                             </tr>
                             <tr>
                               <td style="padding: 15px;">
-                                <div><a class="button-width" href="http://" style="background-color:#cd3c32;border-radius:5px;color:#ffffff;display:inline-block;font-family:'Cabin', Helvetica, Arial, sans-serif;font-size:14px;font-weight:regular;line-height:45px;text-align:center;text-decoration:none;-webkit-text-size-adjust:none;mso-hide:all;">Check it out!!!</a></div>
+                                <div><a class="button-width" href="https://univasa.com/us/" style="background-color:#cd3c32;border-radius:5px;color:#ffffff;display:inline-block;font-family:'Cabin', Helvetica, Arial, sans-serif;font-size:14px;font-weight:regular;line-height:45px;text-align:center;text-decoration:none;-webkit-text-size-adjust:none;mso-hide:all;">Check it out!!!</a></div>
                               </td>
                             </tr>
                           </table>
@@ -380,7 +380,9 @@
               <!--<img src="{{ asset('img/logo_3.png') }}" height="135" width="220"><br/>-->
               <img src="https://ucall.ng/mvno/public/img/logo_3.png" height="135" width="220"><br/>
               <strong>Univasa</strong><br/>
-              Plot 30a Alternative Route<br/>
+              (1) ​607-466-2248<br/>
+              business-us@univasa.com<br/>
+              447 Broadway, 2nd Floor, #1296 New York, NY 10013<br/>
               <i>Always something for everyone</i><br /><br/>
             </td>
           </tr>

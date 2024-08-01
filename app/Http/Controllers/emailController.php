@@ -21,7 +21,7 @@ class emailController extends Controller
             $message = "Thank you for signing up with Univasa, We hope you enjoy your time with us. Check out some of our newest products below or click on the button below to visit us";
         }
 
-        return view("/index", ['message'=>$message, 'subject'=>$subject]);
+        return view("/welcome", ['message'=>$message, 'subject'=>$subject]);
 
     }
 }
