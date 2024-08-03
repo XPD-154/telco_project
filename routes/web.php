@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\emailController;
+use App\Http\Controllers\uploadController;
 use Illuminate\Http\Request;
 
 /*
@@ -23,6 +24,10 @@ Route::get('/', function () {
 
 //homepage route
 Route::get('/', [emailController::class, 'email']);
+
+Route::get('/upload', [uploadController::class, 'index']);
+
+Route::post('/upload_csv', [uploadController::class, 'import']);
 
 //mail route
 Route::get('send_mail', function (Request $request) {
