@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-//use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\ClientException;
 use Guzzle\Http\Exception\ClientErrorResponseException;
@@ -14,11 +13,13 @@ use GuzzleHttp\Exception\ConnectException;
 
 class planPurchaseController extends Controller
 {
-    //
+    //purchase SIM function
     public function purchase(Request $request){
 
+        ///////////check for variables//////////////
         if($request->has('mdn') && $request->has('plan_id') && $request->has('zip') && $request->has('street') && $request->has('city') && $request->has('state')) {
 
+            //////parameters//////
             $mdn = $request['mdn'];
             $plan_id = $request['plan_id'];
             $zip = $request['zip'];
@@ -26,7 +27,9 @@ class planPurchaseController extends Controller
             $street = $request['street'];
             $city = $request['city'];
             $state = $request['state'];
+            //////end of parameters//////
 
+            ////API call////
             $client = new Client();
             
             $headers = [
@@ -61,9 +64,14 @@ class planPurchaseController extends Controller
 
             try {
 
-                $request = $client->request('POST', 'https://oss.vcarecorporation.com:22712/api/', $headers, $body);
+                $request = new \GuzzleHttp\Psr7\Request('POST', 'https://oss.vcarecorporation.com:22712/api/', $headers, $body);
+
                 $res = $client->sendAsync($request)->wait();
-                echo $res->getBody();
+                $result = $res->getBody();
+                
+
+                $output = Parse :: xmlAsArray($result);
+                return $output;
 
             } catch (ConnectException $e) {
                 
@@ -71,10 +79,12 @@ class planPurchaseController extends Controller
                 return ["status"=>"error", "message"=>$response];
                 
             }
+            ////end of API call////
 
         }else{
 
             return ["status"=>"error", "message"=>"incomplete data"];
         }
+        ///////////end of check for variables//////////////
     }
 }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-//use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\ClientException;
 use Guzzle\Http\Exception\ClientErrorResponseException;
@@ -14,7 +13,7 @@ use GuzzleHttp\Exception\ConnectException;
 
 class changePlanController extends Controller
 {
-    //change sim plan
+    //change SIM plan function
     public function changePlan(Request $request){
 
 
@@ -69,9 +68,14 @@ class changePlanController extends Controller
 
             try {
 
-                $request = $client->request('POST', 'https://oss.vcarecorporation.com:22712/api/', $headers, $body);
+                $request = new \GuzzleHttp\Psr7\Request('POST', 'https://oss.vcarecorporation.com:22712/api/', $headers, $body);
+
                 $res = $client->sendAsync($request)->wait();
-                echo $res->getBody();
+                $result = $res->getBody();
+                
+
+                $output = Parse :: xmlAsArray($result);
+                return $output;
 
             } catch (ConnectException $e) {
                 
