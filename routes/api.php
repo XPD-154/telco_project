@@ -2,10 +2,13 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\usageController; 
-use App\Http\Controllers\activateController; 
-use App\Http\Controllers\planPurchaseController; 
-use App\Http\Controllers\changePlanController;
+use App\Http\Controllers\{
+    authController,
+    usageController,
+    activateController,
+    planPurchaseController,
+    changePlanController,
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +25,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/usage', [usageController::class, 'usage']);
-Route::get('/activate', [activateController::class, 'activate']);
-Route::get('/purchase', [planPurchaseController::class, 'purchase']);
-Route::get('/change_plan', [changePlanController::class, 'changePlan']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::put('/change_password', [AuthController::class, 'newPassword']);
+Route::post('/me', [AuthController::class, 'me']);
+
+Route::group(['middleware' => ['jwt.verify']], function() {
+
+    Route::get('/usage', [usageController::class, 'usage']);
+    Route::get('/activate', [activateController::class, 'activate']);
+    Route::get('/purchase', [planPurchaseController::class, 'purchase']);
+    Route::get('/change_plan', [changePlanController::class, 'changePlan']);
+});
