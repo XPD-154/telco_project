@@ -17,16 +17,17 @@ class activateController extends Controller
     public function activate(Request $request){
 
         ///////////check for variables//////////////
-        if($request->has('esn') && $request->has('plan_id') && $request->has('zip') && $request->has('street') && $request->has('city') && $request->has('state')) {
+        if($request->has('esn') && $request->has('plan_id') && $request->has('zip')) {
             
             //////parameters//////
             $esn = $request['esn'];
             $plan_id = $request['plan_id'];
             $zip = $request['zip'];
 
-            $street = $request['street'];
-            $city = $request['city'];
-            $state = $request['state'];
+            $street1 = isset($request['street1'])?$request['street1']:"";
+            $street2 = isset($request['street2'])?$request['street2']:"";
+            $city = isset($request['city'])?$request['city']:"";
+            $state = isset($request['state'])?$request['state']:"";
             //////end of parameters//////
 
             ////API call////
@@ -56,7 +57,8 @@ class activateController extends Controller
             <language>SPAN</language>
             <zip>'.$zip.'</zip>
             <E911ADDRESS>
-                <STREET1>'.$street.'</STREET1>
+                <STREET1>'.$street1.'</STREET1>
+                <STREET2>'.$street2.'</STREET2>
                 <CITY>'.$city.'</CITY>
                 <STATE>'.$state.'</STATE>
                 <ZIP>'.$zip.'</ZIP>

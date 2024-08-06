@@ -18,17 +18,18 @@ class changePlanController extends Controller
 
 
         ///////////check for variables//////////////
-        if($request->has('mdn') && $request->has('sim') && $request->has('plan_id') && $request->has('zip') && $request->has('street') && $request->has('city') && $request->has('state')) {
+        if($request->has('mdn') && $request->has('plan_id')) {
 
             //////parameters//////
             $mdn = $request['mdn'];
-            $sim = $request['sim'];
             $plan_id = $request['plan_id'];
-            $zip = $request['zip'];
 
-            $street = $request['street'];
-            $city = $request['city'];
-            $state = $request['state'];
+            $zip = isset($request['zip'])?$request['zip']:"";
+            $sim = isset($request['sim'])?$request['sim']:"";
+            $street1 = isset($request['street1'])?$request['street1']:"";
+            $street2 = isset($request['street2'])?$request['street2']:"";
+            $city = isset($request['city'])?$request['city']:"";
+            $state = isset($request['state'])?$request['state']:"";
             //////end of parameters//////
 
 
@@ -58,7 +59,8 @@ class changePlanController extends Controller
                     <sim>'.$sim.'</sim> 
                     <newplanID>'.$plan_id.'</newplanID>
                 <E911ADDRESS>
-                    <STREET1>'.$street.'</STREET1>
+                    <STREET1>'.$street1.'</STREET1>
+                    <STREET2>'.$street2.'</STREET2>
                     <CITY>'.$city.'</CITY>
                     <STATE>'.$state.'</STATE>
                     <ZIP>'.$zip.'</ZIP>
