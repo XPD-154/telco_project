@@ -30,7 +30,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::put('/change_password', [AuthController::class, 'newPassword']);
 Route::post('/me', [AuthController::class, 'me']);
 
-Route::group(['middleware' => ['jwt.verify']], function() {
+Route::group(['middleware' => ['basic.auth']], function() {
 
     Route::get('/usage', [usageController::class, 'usage']);
     Route::get('/activate', [activateController::class, 'activate']);
