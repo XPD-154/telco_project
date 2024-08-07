@@ -304,8 +304,8 @@
                                 <table cellspacing="0" cellpadding="0" width="100%">
                                   <tr>
                                     <td style="text-align:left; width:155px">
-                                      <a href=""><span class="header-sm">Fintech API</span></a><br />
-                                      <p style="text-align: justify;">Univasa FinTech API Solution is a backend application designed to facilitate easy and fast deployment of financial solutions for small and medium financial institutions</p>
+                                      <a href=""><span class="header-sm">Univasa MVNO</span></a><br />
+                                      <p style="text-align: justify;">Univasa offers the best SIM only Deals, Unlimited Data and more. Choose from a range of Pay monthly SIM with 4G and 5G networks</p>
                                     </td>
                                     <!--<td style="text-align:right; vertical-align: top;">
                                       <strong>0.00</strong>
@@ -317,7 +317,7 @@
                             <tr>
                               <td style="padding: 15px;">
                                 <div>
-                                  <a class="button-width" href="https://univasa.com/fintech/" style="background-color:#cd3c32;border-radius:5px;color:#ffffff;display:inline-block;font-family:'Cabin', Helvetica, Arial, sans-serif;font-size:14px;font-weight:regular;line-height:45px;text-align:center;text-decoration:none; -webkit-text-size-adjust:none;mso-hide:all;">Check it out!!!</a></div>
+                                  <a class="button-width" href="https://univasa.com/us/" style="background-color:#cd3c32;border-radius:5px;color:#ffffff;display:inline-block;font-family:'Cabin', Helvetica, Arial, sans-serif;font-size:14px;font-weight:regular;line-height:45px;text-align:center;text-decoration:none; -webkit-text-size-adjust:none;mso-hide:all;">Check it out!!!</a></div>
                               </td>
                             </tr>
                           </table>
@@ -344,7 +344,7 @@
                                   <tr>
                                     <td style="text-align:left; width:155px">
                                       <a href=""><span class="header-sm">Univasa SIM</span></a><br />
-                                      <p style="text-align: justify;">New look of Univasa Subscriber Identity Module (SIM), with the launch of its Mobile Virtual Network Operator (MVNO) in the United States of America (US)</p>
+                                      <p style="text-align: justify;">New look of Univasa Subscriber Identity Module (SIM), with the launch of its Mobile Virtual Network Operator (MVNO) in the US</p>
                                     </td>
                                     <!--<td style="text-align:right; vertical-align: top;">
                                       <strong>0.00</strong>

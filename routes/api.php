@@ -25,15 +25,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
-Route::put('/change_password', [AuthController::class, 'newPassword']);
-Route::post('/me', [AuthController::class, 'me']);
+Route::post('/registerxxxxxxxx', [AuthController::class, 'register']);
+Route::post('/loginxxxxxxxxxx', [AuthController::class, 'login']);
+Route::put('/change_passwordxxxxxxxxxx', [AuthController::class, 'newPassword']);
+Route::post('/mexxxxxxxxxxxxx', [AuthController::class, 'me']);
 
 Route::group(['middleware' => ['basic.auth']], function() {
 
-    Route::get('/usage', [usageController::class, 'usage']);
-    Route::get('/activate', [activateController::class, 'activate']);
-    Route::get('/purchase', [planPurchaseController::class, 'purchase']);
-    Route::get('/change_plan', [changePlanController::class, 'changePlan']);
+    Route::post('/usage', [usageController::class, 'usage']);
+    Route::post('/activate', [activateController::class, 'activate']);
+    Route::post('/purchase', [planPurchaseController::class, 'purchase']);
+    Route::post('/change_plan', [changePlanController::class, 'changePlan']);
 });

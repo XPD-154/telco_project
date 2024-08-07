@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RequestLog;
+
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
@@ -71,15 +73,35 @@ class activateController extends Controller
                 $request = new \GuzzleHttp\Psr7\Request('POST', 'https://oss.vcarecorporation.com:22712/api/', $headers, $body);
 
                 $res = $client->sendAsync($request)->wait();
-                $result = $res->getBody();
-                
+                $response = $res->getBody();
+                $output = Parse :: xmlAsArray($response);
 
-                $output = Parse :: xmlAsArray($result);
+                ////log data////
+                $log_request = new RequestLog;
+
+                $log_request->user = env("BASIC_AUTH_USERNAME");
+                $log_request->request_payload = $body;
+                $log_request->respond_payload = $response;
+
+                $log_request->save();
+                ////end of log data////
+
                 return $output;
 
             } catch (ConnectException $e) {
                 
                 $response = $e->getMessage();
+
+                ////log data////
+                $log_request = new RequestLog;
+
+                $log_request->user = env("BASIC_AUTH_USERNAME");
+                $log_request->request_payload = $body;
+                $log_request->respond_payload = $response;
+
+                $log_request->save();
+                ////end of log data////
+
                 return ["status"=>"error", "message"=>$response];
                 
             }
