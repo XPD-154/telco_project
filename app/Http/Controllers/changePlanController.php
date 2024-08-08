@@ -79,13 +79,7 @@ class changePlanController extends Controller
                 $output = Parse :: xmlAsArray($response);
 
                 ////log data////
-                $log_request = new RequestLog;
-
-                $log_request->user = env("BASIC_AUTH_USERNAME");
-                $log_request->request_payload = $body;
-                $log_request->respond_payload = $response;
-
-                $log_request->save();
+                logSimRequest(env("BASIC_AUTH_USERNAME"), $body, $response);
                 ////end of log data////
 
                 return $output;
@@ -95,13 +89,7 @@ class changePlanController extends Controller
                 $response = $e->getMessage();
 
                 ////log data////
-                $log_request = new RequestLog;
-
-                $log_request->user = env("BASIC_AUTH_USERNAME");
-                $log_request->request_payload = $body;
-                $log_request->respond_payload = $response;
-
-                $log_request->save();
+                logSimRequest(env("BASIC_AUTH_USERNAME"), $body, $response);
                 ////end of log data////
                 
                 return ["status"=>"error", "message"=>$response];

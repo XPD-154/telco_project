@@ -8,6 +8,7 @@ use App\Http\Controllers\{
     activateController,
     planPurchaseController,
     changePlanController,
+    uploadController,
 };
 
 /*
@@ -37,3 +38,5 @@ Route::group(['middleware' => ['basic.auth']], function() {
     Route::post('/purchase', [planPurchaseController::class, 'purchase']);
     Route::post('/change_plan', [changePlanController::class, 'changePlan']);
 });
+
+Route::post('/upload', [uploadController::class, 'import']);
