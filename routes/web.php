@@ -29,7 +29,12 @@ Route::get('/upload', [uploadController::class, 'index']);
 
 Route::post('/upload_csv', [uploadController::class, 'import']);
 
+Route::get('/google/redirect', [App\Http\Controllers\googleLoginController::class, 'redirectToGoogle'])->name('google.redirect');
 
+Route::get('/google/callback', [App\Http\Controllers\googleLoginController::class, 'handleGoogleCallback'])->name('google.callback');
 
+Route::get('/google_login', function () {
+    return view('google');
+});
 
 
