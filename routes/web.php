@@ -29,42 +29,6 @@ Route::get('/upload', [uploadController::class, 'index']);
 
 Route::post('/upload_csv', [uploadController::class, 'import']);
 
-//mail route
-Route::get('send_mail', function (Request $request) {
-   
-    if($request['header']){
-        $header = $request['header'];
-    }else{
-        $header = "Welcome to UNIVASA";
-    }
-
-    if($request['message']){
-        $message = $request['message'];
-    }else{
-        $message = "Thank you for signing up with Univasa, We hope you enjoy your time with us. Check out some of our newest products below or click on the button below to visit us";
-    }
-
-    if($request['toEmail']){
-        $email = $request['toEmail'];
-    }else{
-        $email = 'ambassadorj.boy@gmail.com';
-    }
-
-    if($request['subject']){
-        $subject = $request['subject'];
-    }else{
-        $subject = 'Univasa LCC';
-    }
-
-    $details = [
-        'title' => $header,
-        'body' => $message
-    ];
-   
-    \Mail::to($email)->send(new \App\Mail\sendMail($details, $subject));
-    dd("Email is Sent.");
-});
-
 
 
 
