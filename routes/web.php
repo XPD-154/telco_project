@@ -29,6 +29,7 @@ Route::get('/upload', [uploadController::class, 'index']);
 
 Route::post('/upload_csv', [uploadController::class, 'import']);
 
+/*social auth google*/
 Route::get('/google/redirect', [App\Http\Controllers\googleLoginController::class, 'redirectToGoogle'])->name('google.redirect');
 
 Route::get('/google/callback', [App\Http\Controllers\googleLoginController::class, 'handleGoogleCallback'])->name('google.callback');

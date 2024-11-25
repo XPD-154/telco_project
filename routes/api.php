@@ -10,6 +10,8 @@ use App\Http\Controllers\{
     changePlanController,
     uploadController,
     serviceInfoController,
+    linkedlnLoginController,
+    googleLoginController,
 };
 
 /*
@@ -27,11 +29,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+/*Authenticate url*/
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::put('/change_password', [AuthController::class, 'newPassword']);
 Route::post('/me', [AuthController::class, 'me']);
 
+/*mvno url*/
 Route::group(['middleware' => ['basic.auth']], function() {
 
     Route::post('/usage', [usageController::class, 'usage']);
@@ -41,9 +45,15 @@ Route::group(['middleware' => ['basic.auth']], function() {
     Route::post('/service_info', [serviceInfoController::class, 'info']);
 });
 
+/*upload url*/
 Route::post('/upload', [uploadController::class, 'import']);
 
-//mail route
+/*social auth url*/
+Route::get('/linkedin/redirect', [linkedlnLoginController::class, 'redirectToLinkedln']);
+
+Route::get('/linkedin/callback', [linkedlnLoginController::class, 'linkedlnSubmit']);
+
+/*mail route*/
 Route::get('/send_mail', function (Request $request) {
     
     if($request['header']){
@@ -76,6 +86,43 @@ Route::get('/send_mail', function (Request $request) {
     ];
    
     \Mail::to($email)->send(new \App\Mail\sendMail($details, $subject));
+    //dd("Email is Sent.");
+    return ["status"=>"success", "message"=>"Email is sent"];
+});
+
+/*mail route*/
+Route::get('/cross_send_mail', function (Request $request) {
+    
+    if($request['header']){
+        $header = "";
+    }else{
+        $header = "";
+    }
+
+    if($request['message']){
+        $message = $request['message'];
+    }else{
+        return ["status"=>"error", "message"=>"message missing"];
+    }
+
+    if($request['toEmail']){
+        $email = $request['toEmail'];
+    }else{
+        return ["status"=>"error", "message"=>"email missing"];
+    }
+
+    if($request['subject']){
+        $subject = "Transaction Notification Email";
+    }else{
+        $subject = "Transaction Notification Email";
+    }
+
+    $details = [
+        'title' => $header,
+        'body' => $message
+    ];
+   
+    \Mail::to($email)->send(new \App\Mail\sendMailV2($details, $subject));
     //dd("Email is Sent.");
     return ["status"=>"success", "message"=>"Email is sent"];
 });
