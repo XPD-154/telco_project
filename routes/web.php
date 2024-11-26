@@ -5,6 +5,7 @@ use App\Http\Controllers\emailController;
 use App\Http\Controllers\uploadController;
 use Illuminate\Http\Request;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,6 +26,8 @@ Route::get('/', function () {
 //homepage route
 Route::get('/', [emailController::class, 'email']);
 
+Route::get('/send_mail', [emailController::class, 'send_mail']);
+
 Route::get('/upload', [uploadController::class, 'index']);
 
 Route::post('/upload_csv', [uploadController::class, 'import']);
@@ -37,5 +40,6 @@ Route::get('/google/callback', [App\Http\Controllers\googleLoginController::clas
 Route::get('/google_login', function () {
     return view('google');
 });
+
 
 

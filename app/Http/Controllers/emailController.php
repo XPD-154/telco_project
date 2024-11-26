@@ -24,4 +24,5 @@ class emailController extends Controller
         return view("/welcome", ['message'=>$message, 'subject'=>$subject]);
 
     }
+
 }

@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\sendMailv3;
 use App\Http\Controllers\{
     authController,
     usageController,
@@ -53,31 +55,31 @@ Route::get('/linkedin/redirect', [linkedlnLoginController::class, 'redirectToLin
 
 Route::get('/linkedin/callback', [linkedlnLoginController::class, 'linkedlnSubmit']);
 
-/*mail route*/
+/*Univasa mail route*/
 Route::get('/send_mail', function (Request $request) {
     
     if($request['header']){
         $header = $request['header'];
     }else{
-        return ["status"=>"error", "message"=>"header missing"];
+        return response()->json(["status"=>"error", "message"=>"header missing"], 400);
     }
 
     if($request['message']){
         $message = $request['message'];
     }else{
-        return ["status"=>"error", "message"=>"message missing"];
+        return response()->json(["status"=>"error", "message"=>"message missing"], 400);
     }
 
     if($request['toEmail']){
         $email = $request['toEmail'];
     }else{
-        return ["status"=>"error", "message"=>"email missing"];
+        return response()->json(["status"=>"error", "message"=>"email missing"], 400);
     }
 
     if($request['subject']){
         $subject = $request['subject'];
     }else{
-        return ["status"=>"error", "message"=>"subject missing"];
+        return response()->json(["status"=>"error", "message"=>"subject missing"], 400);
     }
 
     $details = [
@@ -86,11 +88,10 @@ Route::get('/send_mail', function (Request $request) {
     ];
    
     \Mail::to($email)->send(new \App\Mail\sendMail($details, $subject));
-    //dd("Email is Sent.");
-    return ["status"=>"success", "message"=>"Email is sent"];
+    return response()->json(["status"=>"success", "message"=>"Email is sent"], 200);
 });
 
-/*mail route*/
+/*Crosstee mail route*/
 Route::get('/cross_send_mail', function (Request $request) {
     
     if($request['header']){
@@ -102,13 +103,13 @@ Route::get('/cross_send_mail', function (Request $request) {
     if($request['message']){
         $message = $request['message'];
     }else{
-        return ["status"=>"error", "message"=>"message missing"];
+        return response()->json(["status"=>"error", "message"=>"message missing"], 400);
     }
 
     if($request['toEmail']){
         $email = $request['toEmail'];
     }else{
-        return ["status"=>"error", "message"=>"email missing"];
+        return response()->json(["status"=>"error", "message"=>"email missing"], 400);
     }
 
     if($request['subject']){
@@ -123,6 +124,46 @@ Route::get('/cross_send_mail', function (Request $request) {
     ];
    
     \Mail::to($email)->send(new \App\Mail\sendMailV2($details, $subject));
-    //dd("Email is Sent.");
-    return ["status"=>"success", "message"=>"Email is sent"];
+    return response()->json(["status"=>"success", "message"=>"Email is sent"], 200);
+    
+});
+
+/*Extra mail route*/
+Route::get('/send_email_v2', function (Request $request) {
+
+    if($request['header']){
+        $header = "";
+    }else{
+        $header = "";
+    }
+
+    if($request['message']){
+        $message = $request['message'];
+    }else{
+        return response()->json(["status"=>"error", "message"=>"message missing"], 400);
+    }
+
+    if($request['toEmail']){
+        $email = $request['toEmail'];
+    }else{
+        return response()->json(["status"=>"error", "message"=>"email missing"], 400);
+    }
+
+    if($request['subject']){
+        $subject = "Notification Email";
+    }else{
+        $subject = "Notification Email";
+    }
+
+    $details = [
+        'title' => $header,
+        'body' => $message
+    ];
+
+    Mail::mailer('smtp')
+    ->to($email)
+    ->send(new sendMailv3($details, $subject));
+
+    return response()->json(["status"=>"success", "message"=>"Email is sent"], 200);
+
 });
